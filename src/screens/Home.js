@@ -12,14 +12,16 @@ const Home = ({navigation}) => {
     <View style={styles.container}>
         <Spinner visible={isLoading} />
         <View style={styles.topnav}>
-            <View>
-                <Image
-                                source={require('../../assets/icons/menu_icon.png')} 
-                                style={styles.ImageStyle}
-                            />
-            </View>
+            <TouchableOpacity onPress={(text)=>{navigation.toggleDrawer();}}>
+                <View>
+                    <Image
+                            source={require('../../assets/icons/menu_icon.png')} 
+                            style={styles.ImageStyle}
+                        />
+                </View>
+            </TouchableOpacity>
+          
             <View style={{flexDirection: 'row',backgroundColor: '#fff', padding: 2, borderRadius: 8, }}> 
-  
                 <View>  
                     <Image
                             source={require('../../assets/illustration/money.png')} 

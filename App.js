@@ -10,7 +10,6 @@ export default function App() {
     <AuthProvider>
       <Navigation></Navigation>
     </AuthProvider>
-    
   );
 }
 

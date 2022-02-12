@@ -1,4 +1,5 @@
 import React, {createContext, useEffect, useState} from 'react';
+import { View, StyleSheet, Button, Alert } from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {BASE_URL} from '../Config';
@@ -10,7 +11,7 @@ export const AuthProvider =({children})=>{
     const [userInfo, setuserInfo] = useState({});
     const [isloading, setIsloading] =  useState(false);
     const [splashLoading, setSplashLoading] = useState(false);
-
+    const [alermessage, setAlermessage] = useState(false);
 
     const register = (name, email, password) =>{
         
@@ -39,8 +40,17 @@ export const AuthProvider =({children})=>{
         axios.post(`${BASE_URL}/api/user/login`,{email,password})
              .then(res=>{
                 let userInfo =  res.data;
-                setuserInfo(userInfo);
-                AsyncStorage.setItem("userInfo",JSON.stringify(userInfo));
+
+                console.log(userInfo);
+                if(userInfo.islogin==false){
+                 
+                  setAlermessage("Wrong User name or Password");
+                 
+                }else{
+                  setuserInfo(userInfo);
+                  AsyncStorage.setItem("userInfo",JSON.stringify(userInfo));
+                }
+
                 setIsloading(false);
             })
             .catch(e=>{
@@ -92,7 +102,6 @@ export const AuthProvider =({children})=>{
     
       useEffect(() => {
         isLoggedIn();
-        console.log("yes effected");
       }, []);
 
 
@@ -105,6 +114,7 @@ export const AuthProvider =({children})=>{
             register,
             login,
             logout,
+            alermessage
           }}>
           {children}
         </AuthContext.Provider>
@@ -112,3 +122,11 @@ export const AuthProvider =({children})=>{
    
 
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+});

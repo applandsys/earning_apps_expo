@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import {  StyleSheet, Text, View,TextInput, Image,Button , TouchableOpacity , SafeAreaView } from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay/lib';
 
@@ -11,7 +11,14 @@ export default function Login({navigation}) {
     const [email, setEmail] = useState(null) ;
     const [password, setPassword] = useState(null);
 
-    const {login,isloading} =  useContext(AuthContext);
+    const {login,isloading, alermessage} =  useContext(AuthContext);
+
+
+
+
+    useEffect(() => {
+        console.log('effect on login ');
+      }, []);
 
 
   return (
@@ -22,10 +29,17 @@ export default function Login({navigation}) {
                 <Text style={styles.textLogo}>JobFly</Text>
             </View>
             <View style={styles.loginbox}>
-                <Text style={styles.signintext }>Sing in your Account {isloading} </Text>
-                <View style={{ flexDirection: 'row',justifyContent: 'center' }}>
+                <View>
+                    <Text style={styles.signintext }>Sing in your Account  </Text>
+                </View>
+              
+
+                <View style={{ flexDirection: 'column',justifyContent: 'center' }}>
                     <View style={styles.textContent}>
-                        <Text>Enter Your email address and password to access your account or create your account.</Text>
+                        <Text style={{justifyContent: 'center', textAlign: 'left', marginHorizontal: 10}}>Enter Your email address and password to access your account or create your account.</Text>
+                    </View>
+                    <View>
+                        <Text style={{color: '#FF3342', textAlign: 'center', fontWeight: 'bold'}}>{alermessage}</Text>
                     </View>
                 </View>
                 <View>          
@@ -140,7 +154,7 @@ const styles = StyleSheet.create({
     width: '90%', 
     alignItems: 'center', 
     fontSize: 15,
-    marginTop: 20
+    marginVertical: 20
   },
     SectionStyle: {
       flexDirection: 'row',
