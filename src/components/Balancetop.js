@@ -5,7 +5,7 @@ import React,{useContext} from 'react';
 import {AuthContext,AuthProvider} from '../context/AuthContext';
 
 
-const Balance = () => {
+const Balancetop = () => {
 
   const {userInfo} =  useContext(AuthContext);
 
@@ -29,4 +29,4 @@ const Balance = () => {
   )
 }
 
-export default Balance
+export default Balancetop

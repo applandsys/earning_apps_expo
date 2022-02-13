@@ -17,6 +17,8 @@ import Addjob from '../../src/screens/Addjob';
 import Payment from '../../src/screens/Payment';
 import Mobilebank from '../screens/Mobilebank';
 import Myjob from '../screens/Myjob';
+import CustomDrawerContent  from './CustomDrawerContent';
+
 
 import {AuthContext,AuthProvider} from '../context/AuthContext';
 
@@ -25,9 +27,11 @@ const Drawer = createDrawerNavigator();
 
 function DrawerRoutes() {
     return (
-        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Navigator initialRouteName="Home" drawerContent={(props) => <CustomDrawerContent {...props} />}>
             <Drawer.Screen name="Home" component={Home} options={{headerShown: false}}/>
             <Drawer.Screen name="Addjob" component={Addjob}  options={{headerShown: false}}/>
+           
+            
         </Drawer.Navigator>
     );
   }

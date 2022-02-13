@@ -11,13 +11,13 @@ export default function Login({navigation}) {
     const [email, setEmail] = useState(null) ;
     const [password, setPassword] = useState(null);
 
-    const {login,isloading, alermessage} =  useContext(AuthContext);
-
-
+    const {login,isloading, islogin, alermessage} =  useContext(AuthContext);
 
 
     useEffect(() => {
-        console.log('effect on login ');
+        if(islogin){
+            navigation.replace("Home");
+        }
       }, []);
 
 

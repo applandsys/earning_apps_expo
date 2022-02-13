@@ -12,6 +12,7 @@ export const AuthProvider =({children})=>{
     const [isloading, setIsloading] =  useState(false);
     const [splashLoading, setSplashLoading] = useState(false);
     const [alermessage, setAlermessage] = useState(false);
+    const [islogin, setIslogin] = useState(false);
 
     const register = (name, email, password) =>{
         
@@ -23,7 +24,7 @@ export const AuthProvider =({children})=>{
             setuserInfo(userInfo);
             AsyncStorage.setItem("userInfo", JSON.stringify(userInfo));
             setIsloading(false);
-            console.log(userInfo);
+            setIslogin(true);
         })
         .catch(e=>{
             console.log(`regiser erros is ${e}`)
@@ -40,8 +41,6 @@ export const AuthProvider =({children})=>{
         axios.post(`${BASE_URL}/api/user/login`,{email,password})
              .then(res=>{
                 let userInfo =  res.data;
-
-                console.log(userInfo);
                 if(userInfo.islogin==false){
                  
                   setAlermessage("Wrong User name or Password");
@@ -49,6 +48,7 @@ export const AuthProvider =({children})=>{
                 }else{
                   setuserInfo(userInfo);
                   AsyncStorage.setItem("userInfo",JSON.stringify(userInfo));
+                  setIslogin(true);
                 }
 
                 setIsloading(false);
@@ -92,6 +92,8 @@ export const AuthProvider =({children})=>{
           if (userInfo) {
              setuserInfo(userInfo);
           }
+
+          setIslogin(true);
     
           setSplashLoading(false);
         } catch (e) {
@@ -114,6 +116,7 @@ export const AuthProvider =({children})=>{
             register,
             login,
             logout,
+            islogin,
             alermessage
           }}>
           {children}

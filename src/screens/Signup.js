@@ -12,6 +12,12 @@ export default function Signup({navigation}) {
 
     const {isloading,register} =  useContext(AuthContext);
 
+
+
+    useEffect(() => {
+        console.log('effect on Signup ');
+      }, []);
+
   return (
 
         <SafeAreaView style={styles.container}>

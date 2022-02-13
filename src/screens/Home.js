@@ -3,10 +3,18 @@ import {Button, StyleSheet, Text, View, Image, TouchableOpacity} from 'react-nat
 import Spinner from 'react-native-loading-spinner-overlay';
 import {AuthContext} from '../context/AuthContext';
 
-import BottomNavigator from '../components/BottomNavigator'
+import {AppContext,AppProvider} from '../context/AppContext';
+
+import BottomNavigator from '../components/BottomNavigator';
+import Balancetext from '../components/Balancetext';
 
 const Home = ({navigation}) => {
   const {userInfo, isLoading, logout} = useContext(AuthContext);
+
+  //const {getMyStringValue} = React.useContext(AppContext);  
+    
+ // console.log(getMyStringValue());
+
 
   return (
     <View style={styles.container}>
@@ -29,7 +37,7 @@ const Home = ({navigation}) => {
                         />
                 </View>
                 <View style={{alignSelf: 'center', paddingRight: 5}}> 
-                    <Text style={{fontWeight:'bold'}}>100 Dollar</Text>
+                    <Balancetext/>
                 </View>
             </View>
             <View> 
